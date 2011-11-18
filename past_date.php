@@ -12,11 +12,10 @@
 			$toukoubi_unix = strtotime($toukoubi); 
 			//投稿期限日のUNIXタイムを求める
 			$toukou_limit_unix = $toukoubi_unix + $value_unix;
-			$today_unix = date('U', current_time( 'timestamp' ));
+			$today_unix = date('U', current_time('timestamp'));
 			//投稿期限日から今日を減算。これで今投稿してから何日経過したかが判明する
 			$past_days_unix = $toukou_limit_unix - $today_unix;
 			$past_day = ceil($past_days_unix / (24*60*60));  //ceilを使って端数を切り上げる。
-			$last_modified_day_mysql = $post->post_modified;
 		?>
 	<?php if($past_days_unix > 0): ?>
 		<div class="one_line">
